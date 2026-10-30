@@ -10,7 +10,7 @@ class SpacePacket:
     self.data = "" 
     self.data_size = ""
 
-p0 = SpacePacket(1,11,1,1)
+
 def pack_payload(data:bytes,sec_header:bytes = b"")->bytes:
   packet_data = (data)
   packet_sec_header = (sec_header)
