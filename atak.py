@@ -28,7 +28,8 @@ def show(frame: bytes) -> str:
     """Opis ramki - widac, ze bez szyfrowania wszystko jest jawne."""
     p, data, _ = packet.unpack(frame)
     kind = "TC" if p.packet_type == config.TC else "TM"
-    return f"{kind} apid=0x{p.apid:03x} seq={p.seq_number} dane={data}"
+    # surowe bajty ramki, tak jak wypisuje je satellite.py
+    return f"{kind} apid=0x{p.apid:03x} seq={p.seq_number} dane={data}\n       {frame.hex(' ')}"
 
 
 def captured_commands() -> list[bytes]:

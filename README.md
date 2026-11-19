@@ -19,7 +19,25 @@ Sends a telecommand (TC, APID `0x10`, data `PING`) through the ether and waits u
 Listens in a loop on `SAT_PORT`. Unpacks every received frame and sends an acknowledgement back through the ether (TM, APID `0x11`, same sequence count, data `received`).
 ### Running
 Start each module in a separate terminal, in this order:
+
+1. Ether:
+   ```bash
+   python eter.py
+   ```
+2. Satellite:
+   ```bash
+   python satellite.py
+   ```
+3. Sniffer (attacker):
+   ```bash
+   python atak.py sniff
+   ```
+4. Ground station:
+   ```bash
+   python earth.py
+   ```
+Noisy channel example (restart only the ether):
 ```bash
-CZMIEL NIECH WYPELNI JAK ODPALAC TO
+python eter.py --ber 0.01 --loss 0.2 --delay 100
 ```
-Address and ports are set in `config.py` (default `127.0.0.1`: ether 5000, ground station 5001, satellite 5002).
+Address and ports are set in `config.py` (default `127.0.0.1`: ether 5000, ground station 5001, satellite 5002, attacker 5003).
