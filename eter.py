@@ -67,6 +67,7 @@ class Ether:
         self.loss = loss
         self.delay = delay_ms / 1000.0
         self.jitter = jitter_ms / 1000.0
+        # seed = ziarno losowania: ten sam seed -> te same zgubione ramki i przeklamane bity
         self.rng = random.Random(seed)
         self.verbose = verbose
 
@@ -196,6 +197,7 @@ def main():
     ap.add_argument("--loss", type=float, default=config.LOSS, help="prawdopodobienstwo utraty ramki")
     ap.add_argument("--delay", type=float, default=config.DELAY_MS, help="opoznienie [ms]")
     ap.add_argument("--jitter", type=float, default=config.JITTER_MS, help="rozrzut opoznienia [ms]")
+    ap.add_argument("--seed", type=int, default=None, help="ziarno losowania (powtarzalne wyniki)")
     ap.add_argument("--log", default=None, help="plik CSV z logiem ramek")
     ap.add_argument("-q", "--quiet", action="store_true", help="nie wypisuj kazdej ramki")
     a = ap.parse_args()
